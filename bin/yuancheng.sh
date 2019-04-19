@@ -27,38 +27,38 @@ readonly projectnum="$1"
 
 #### 主体 ####
 case "${projectnum}" in
-  )
-    bash "${rootdir}"/remote/bin/remote.sh  1,2,3
+  0)
+    bash "${rootdir}"/remote/bin/remote.sh all 1,2,3
     ;;
-  )
-    bash "${rootdir}"/remote/bin/remote.sh  1,2,3
+  5)
+    bash "${rootdir}"/remote/bin/remote.sh 3-1 1,2,3
     ;;
-  )
-    bash "${rootdir}"/remote/bin/remote.sh  1,2,3
+  6)
+    bash "${rootdir}"/remote/bin/remote.sh 3-2 1,2,3
     ;;
-  )
-    bash "${rootdir}"/remote/bin/remote.sh  1,2,3
+  7)
+    bash "${rootdir}"/remote/bin/remote.sh 4-1 1,2,3
     ;;
-  )
-    bash "${rootdir}"/remote/bin/remote.sh  1,2,3
+  8)
+    bash "${rootdir}"/remote/bin/remote.sh 4-2 1,2,3
     ;;
-  )
-    bash "${rootdir}"/remote/bin/remote.sh  1,2,3
+  9)
+    bash "${rootdir}"/remote/bin/remote.sh 5-1 1,2,3
     ;;
-  )
-    bash "${rootdir}"/remote/bin/remote.sh  1,2,3
+  10)
+    bash "${rootdir}"/remote/bin/remote.sh 5-2 1,2,3
     ;;
-  )
-    bash "${rootdir}"/remote/bin/remote.sh  1,2,3
+  11)
+    bash "${rootdir}"/remote/bin/remote.sh 6-1 1,2,3
     ;;
-  )
-    bash "${rootdir}"/remote/bin/remote.sh  1,2,3
+  12)
+    bash "${rootdir}"/remote/bin/remote.sh 6-2 1,2,3
     ;;
-  )
-    bash "${rootdir}"/remote/bin/remote.sh  1,2,3
+  13)
+    bash "${rootdir}"/remote/bin/remote.sh 7-1 1,2,3
     ;;
-  )
-    bash "${rootdir}"/remote/bin/remote.sh  1,2,3
+  14)
+    bash "${rootdir}"/remote/bin/remote.sh 7-2 1,2,3
     ;;
   *)
     err "${oneself##*/}: unrecognized option '${projectnum}'"
