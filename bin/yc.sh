@@ -21,9 +21,13 @@ readonly rootdir
 #### 变量 ####
 qq_list='3-1,3-2,4-1,4-2,5-1,5-2,6-1,6-2,7-1,7-2'
 readonly confdir="${rootdir}/remote/conf"
+readonly taskdir="${rootdir}/temp/remote/task"
+todaytask="${taskdir}/$(date +'%Y-%m-%d').task"
+ydaytask="${taskdir}/$(date +'%Y-%m-%d' -d '-1day').task"
+readonly todaytask
+readonly ydaytask
 
 #### 主体 ####
-# 读取配置文件
 filedir::config "qq_list" "[1-9][0-9,-]*[1-2,]" "${confdir}/remote.conf"
 qq_list=",${qq_list},"
 
