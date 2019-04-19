@@ -30,11 +30,13 @@ readonly todaytask
 readonly ydaytask
 
 #### 主体 ####
+# 读取配置文件
 filedir::config "qq_list" "[1-9][0-9,-]*[1-2,]" "${confdir}/remote.conf"
 qq_list=",${qq_list},"
 
 readonly qq_list
 
+# 菜单1: 头部
 
 
 
@@ -44,6 +46,54 @@ readonly qq_list
 
 
 
+
+
+
+# 菜单2: 昨天
+
+
+
+
+
+
+
+
+
+
+
+# 菜单3: 今天
+
+
+
+
+
+
+
+
+
+
+# 菜单4: 编号
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 菜单5: 输入
 
 
 
