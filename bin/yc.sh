@@ -35,6 +35,72 @@ qq_list=",${qq_list},"
 
 readonly qq_list
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 for qq in ${QQS}; do
   if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
     for bat in ${BATS}; do
