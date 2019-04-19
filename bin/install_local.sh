@@ -27,15 +27,26 @@ if [[ ! -s "${reposrc}" ]]; then
   exit "${E_NOT_FOUND}"
 fi
 
+cat > /c/Users/"${username}"/yuancheng.sh <<-EOF
+#!/bin/bash
+#
+# 远程配置的方案的链接
+set -euo pipefail
 
+# 可复制到 C:\Program Files\Git\usr\bin
 
+bash ${rootdir}/yuancheng/bin/yuancheng.sh "\$@"
+EOF
 
+cat > /c/Users/"${username}"/yc.sh <<-EOF
+#!/bin/bash
+#
+# 远程配置的交互的链接
+set -euo pipefail
 
+# 可复制到 C:\Program Files\Git\usr\bin
 
+bash ${rootdir}/yuancheng/bin/yc.sh "\$@"
+EOF
 
-
-
-
-
-
-
+cp /c/Users/"${username}"/yc.sh /c/Users/"${username}"/yc
