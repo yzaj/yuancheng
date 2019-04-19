@@ -26,6 +26,7 @@ readonly confdir="${rootdir}/remote/conf"
 readonly taskdir="${rootdir}/temp/remote/task"
 todaytask="${taskdir}/$(date +'%Y-%m-%d').task"
 ydaytask="${taskdir}/$(date +'%Y-%m-%d' -d '-1day').task"
+result=0
 readonly todaytask
 readonly ydaytask
 
@@ -37,143 +38,53 @@ qq_list=",${qq_list},"
 readonly qq_list
 
 # 菜单1: 头部
+clear
+
+cat <<-'EOF'
+正在远程配置:
 
 
-
-
-
-
-
-
-
-
-
+EOF
 
 # 菜单2: 昨天
-
-
-
-
-
-
-
-
-
-
-
-# 菜单3: 今天
-
-
-
-
-
-
-
-
-
-
-# 菜单4: 编号
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 菜单5: 输入
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-for qq in ${QQS}; do
-  if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
-    for bat in ${BATS}; do
+echo "昨天任务:"
+
+if [[ -s "${ydaytask}" ]]; then
+  for qq in ${QQS}; do
+    if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
       
-      if [[ "${bat}" == "1" ]]; then
-        echo -ne "     ${bat}\r"
-      elif [[ "${bat}" == "2" ]]; then
-        echo -ne "       ${bat}\r"
-      else
-        echo -ne "         ${bat}\r"
+      for bat in ${BATS}; do
+        if ! grep "^${qq} ${bat}" "${ydaytask}" &> /dev/null; then
+          if [[ "${bat}" == "1" ]]; then
+            echo -ne "     ${bat}\r"
+          elif [[ "${bat}" == "2" ]]; then
+            echo -ne "       ${bat}\r"
+          else
+            echo -ne "         ${bat}\r"
+          fi
+          
+          result=1
+        fi
+      done
+      
+      if [[ "${result}" == "1" ]]; then
+        echo "${qq}"
+        result=0
       fi
       
-    done
-    
-    echo "${qq}"
-  fi
-done
+    fi
+  done
+fi
 
 
 
 
 
+echo ""
+echo ""
 
+# 菜单3: 今天
+echo "今天任务:"
 
 
 
@@ -181,7 +92,11 @@ done
 
 
 
+echo ""
+echo ""
 
+# 菜单4: 当前
+echo "当前任务:"
 
 
 
@@ -201,76 +116,20 @@ done
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# 菜单5: 编号
 cat <<-'EOF'
 
 
-
-
+操作列表:
 
  0    全部
+
  5    3-1
  6    3-2
  7    4-1
  8    4-2
  9    5-1
+
 10    5-2
 11    6-1
 12    6-2
@@ -278,9 +137,34 @@ cat <<-'EOF'
 14    7-2
 
 
-
-
 EOF
+
+# 菜单6: 输入
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
