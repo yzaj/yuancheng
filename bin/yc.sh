@@ -13,7 +13,7 @@ readonly rootdir
 
 #### 常量 ####
 readonly QQS='1-1 1-2 2-1 2-2 3-1 3-2 4-1 4-2 5-1 5-2 6-1 6-2 7-1 7-2 8-1 8-2 9-1 9-2 10-1 10-2'
-readonly BATS='1 2 3'
+readonly BATS='3 2 1'
 
 #### 包含 ####
 . "${rootdir}"/shell/lib/filedir.sh
@@ -39,9 +39,17 @@ for qq in ${QQS}; do
   if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
     for bat in ${BATS}; do
       
-      echo "${qq}" "${bat}"
+      if [[ "${bat}" == "1" ]]; then
+        echo -ne "     ${bat}\r"
+      elif [[ "${bat}" == "2" ]]; then
+        echo -ne "       ${bat}\r"
+      else
+        echo -ne "         ${bat}\r"
+      fi
       
     done
+    
+    echo "${qq}"
   fi
 done
 
