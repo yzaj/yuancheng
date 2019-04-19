@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-# 安装远程配置到 yzaj 目录
+# 安装远程配置的方案到 yzaj 目录
 set -euo pipefail
 
-readonly REPO='remote'
+readonly REPO='yuancheng'
 readonly MINTTY='git-bash.exe'
 readonly E_USE_MINTTY=1
 
