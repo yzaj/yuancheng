@@ -14,13 +14,18 @@ readonly rootdir
 #### 常量 ####
 readonly QQS='1-1 1-2 2-1 2-2 3-1 3-2 4-1 4-2 5-1 5-2 6-1 6-2 7-1 7-2 8-1 8-2 9-1 9-2 10-1 10-2'
 
+readonly YDAY_COLOR_NO=37
+
 #### 包含 ####
 . "${rootdir}"/shell/lib/filedir.sh
+. "${rootdir}"/shell/lib/color.sh
 
 #### 函数 ####
 
 #### 变量 ####
 qq_list='3-1,3-2,4-1,4-2,5-1,5-2,6-1,6-2,7-1,7-2'
+space=''
+result=0
 
 readonly confdir="${rootdir}/remote/conf"
 readonly taskdir="${rootdir}/temp/remote/task"
@@ -50,17 +55,31 @@ if [[ -s "${ydaytask}" ]]; then
   for qq in ${QQS}; do
     if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
       
-      if grep "^${qq} 3" "${ydaytask}" &> /dev/null; then
-        :
+      if [[ "${qq}" =~ ^[1-9]-[1-2]$ ]]; then
+        space=' '
       fi
       
-      if grep "^${qq} 2" "${ydaytask}" &> /dev/null; then
-        :
+      if ! grep "^${qq} 3" "${ydaytask}" &> /dev/null; then
+        color::echoline "                      3\r" "${YDAY_COLOR_NO}"
+        result=1
       fi
       
-      if grep "^${qq} 1" "${ydaytask}" &> /dev/null; then
-        :
+      if ! grep "^${qq} 2" "${ydaytask}" &> /dev/null; then
+        color::echoline "            2\r" "${YDAY_COLOR_NO}"
+        result=1
       fi
+      
+      if ! grep "^${qq} 1" "${ydaytask}" &> /dev/null; then
+        color::echoline "      1\r" "${YDAY_COLOR_NO}"
+        result=1
+      fi
+      
+      if [[ "${result}" == "1" ]]; then
+        color::echo "${space}${qq}" "${YDAY_COLOR_NO}"
+      fi
+      
+      space=''
+      result=0
       
     fi
   done
@@ -79,6 +98,10 @@ if [[ -s "${todaytask}" ]]; then
   for qq in ${QQS}; do
     if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
       
+      if [[ "${qq}" =~ ^[1-9]-[1-2]$ ]]; then
+        space=' '
+      fi
+      
       if grep "^${qq} 3" "${todaytask}" &> /dev/null; then
         :
       fi
@@ -90,6 +113,8 @@ if [[ -s "${todaytask}" ]]; then
       if grep "^${qq} 1" "${todaytask}" &> /dev/null; then
         :
       fi
+      
+      space=''
       
     fi
   done
