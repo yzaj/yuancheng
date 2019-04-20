@@ -58,7 +58,7 @@ readonly qq_list
 
 clear
 
-# 5-1
+# 菜单的第一部分
 cat <<-'EOF'
 昨天未做:
 EOF
