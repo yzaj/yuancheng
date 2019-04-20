@@ -14,6 +14,8 @@ readonly rootdir
 #### 常量 ####
 readonly QQS='1-1 1-2 2-1 2-2 3-1 3-2 4-1 4-2 5-1 5-2 6-1 6-2 7-1 7-2 8-1 8-2 9-1 9-2 10-1 10-2'
 readonly YDAY_COLOR_NO=37
+readonly TODAY_COLOR_YES=37
+readonly TODAY_COLOR_NO=31
 
 #### 包含 ####
 . "${rootdir}"/shell/lib/filedir.sh
@@ -40,6 +42,7 @@ result=0
 
 readonly confdir="${rootdir}/remote/conf"
 readonly taskdir="${rootdir}/temp/remote/task"
+readonly yctmp="${rootdir}/temp/yuancheng/yc.tmp"
 
 todaytask="${taskdir}/$(date +'%Y-%m-%d').task"
 ydaytask="${taskdir}/$(date +'%Y-%m-%d' -d '-1day').task"
@@ -71,12 +74,12 @@ if [[ -s "${ydaytask}" ]]; then
       fi
       
       if ! grep "^${qq} 3" "${ydaytask}" &> /dev/null; then
-        echoline "                            第三批\r" "${YDAY_COLOR_NO}"
+        echoline "                                              第三批\r" "${YDAY_COLOR_NO}"
         result=1
       fi
       
       if ! grep "^${qq} 2" "${ydaytask}" &> /dev/null; then
-        echoline "                  第二批\r" "${YDAY_COLOR_NO}"
+        echoline "                           第二批\r" "${YDAY_COLOR_NO}"
         result=1
       fi
       
@@ -106,6 +109,8 @@ EOF
 
 if [[ -s "${todaytask}" ]]; then
   
+  echo ''
+  
   for qq in ${QQS}; do
     if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
       
@@ -113,17 +118,25 @@ if [[ -s "${todaytask}" ]]; then
         space=' '
       fi
       
-      if grep "^${qq} 3" "${todaytask}" &> /dev/null; then
-        :
+      if grep "^${qq} 3" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
+        echoline "                                              第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+      else
+        echoline "                                              第三批\r" "${TODAY_COLOR_NO}"
       fi
       
-      if grep "^${qq} 2" "${todaytask}" &> /dev/null; then
-        :
+      if grep "^${qq} 2" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
+        echoline "                           第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+      else
+        echoline "                           第二批\r" "${TODAY_COLOR_NO}"
       fi
       
-      if grep "^${qq} 1" "${todaytask}" &> /dev/null; then
-        :
+      if grep "^${qq} 1" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
+        echoline "        第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+      else
+        echoline "        第一批\r" "${TODAY_COLOR_NO}"
       fi
+      
+      echo "${space}${qq}"
       
       space=''
       
