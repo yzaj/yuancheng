@@ -20,7 +20,11 @@ readonly rootdir
 #### 变量 ####
 
 #### 主体 ####
+# 读取配置文件
+filedir::config "qq_list" "[1-9][0-9,-]*[1-2,]" "${confdir}/remote.conf"
+qq_list=",${qq_list},"
 
+readonly qq_list
 
 
 
