@@ -50,7 +50,17 @@ if [[ -s "${ydaytask}" ]]; then
   for qq in ${QQS}; do
     if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
       
-      :
+      if grep "^${qq} 3" "${ydaytask}" &> /dev/null; then
+        :
+      fi
+      
+      if grep "^${qq} 2" "${ydaytask}" &> /dev/null; then
+        :
+      fi
+      
+      if grep "^${qq} 1" "${ydaytask}" &> /dev/null; then
+        :
+      fi
       
     fi
   done
@@ -69,7 +79,17 @@ if [[ -s "${todaytask}" ]]; then
   for qq in ${QQS}; do
     if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
       
-      :
+      if grep "^${qq} 3" "${todaytask}" &> /dev/null; then
+        :
+      fi
+      
+      if grep "^${qq} 2" "${todaytask}" &> /dev/null; then
+        :
+      fi
+      
+      if grep "^${qq} 1" "${todaytask}" &> /dev/null; then
+        :
+      fi
       
     fi
   done
