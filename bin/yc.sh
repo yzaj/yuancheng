@@ -167,13 +167,6 @@ if [[ -s "${todaytask}" ]]; then
   
 fi
 
-# 5-3
-cat <<-'EOF'
-
-
-当前任务:
-EOF
-
 # 5-4
 cat <<-'EOF'
 
