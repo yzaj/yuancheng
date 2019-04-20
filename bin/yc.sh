@@ -75,7 +75,7 @@ if [[ -s "${ydaytask}" ]]; then
       fi
       
       if [[ "${result}" == "1" ]]; then
-        color::echo "${space}${qq}" "${YDAY_COLOR_NO}"
+        echo "${space}${qq}"
       fi
       
       space=''
