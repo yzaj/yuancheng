@@ -14,8 +14,9 @@ readonly rootdir
 #### 常量 ####
 readonly QQS='1-1 1-2 2-1 2-2 3-1 3-2 4-1 4-2 5-1 5-2 6-1 6-2 7-1 7-2 8-1 8-2 9-1 9-2 10-1 10-2'
 readonly YDAY_COLOR_NO=37
-readonly TODAY_COLOR_YES=37
 readonly TODAY_COLOR_NO=31
+readonly TODAY_COLOR_YES=37
+readonly TODAY_COLOR_LAST=33
 
 #### 包含 ####
 . "${rootdir}"/shell/lib/filedir.sh
@@ -111,6 +112,9 @@ if [[ -s "${todaytask}" ]]; then
   
   echo ''
   
+  lasttime="$(tail -n 1 "${todaytask}" | cut -d' ' -f 3)"
+  readonly lasttime
+  
   for qq in ${QQS}; do
     if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
       
@@ -119,19 +123,31 @@ if [[ -s "${todaytask}" ]]; then
       fi
       
       if grep "^${qq} 3" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
-        echoline "                                              第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+        if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
+          echoline "                                              第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
+        else
+          echoline "                                              第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+        fi
       else
         echoline "                                              第三批\r" "${TODAY_COLOR_NO}"
       fi
       
       if grep "^${qq} 2" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
-        echoline "                           第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+        if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
+          echoline "                           第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
+        else
+          echoline "                           第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+        fi
       else
         echoline "                           第二批\r" "${TODAY_COLOR_NO}"
       fi
       
       if grep "^${qq} 1" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
-        echoline "        第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+        if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
+          echoline "        第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
+        else
+          echoline "        第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+        fi
       else
         echoline "        第一批\r" "${TODAY_COLOR_NO}"
       fi
