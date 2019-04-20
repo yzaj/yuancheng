@@ -16,7 +16,7 @@ readonly QQS='1-1 1-2 2-1 2-2 3-1 3-2 4-1 4-2 5-1 5-2 6-1 6-2 7-1 7-2 8-1 8-2 9-
 readonly YDAY_COLOR_NO=37
 readonly TODAY_COLOR_NO=31
 readonly TODAY_COLOR_YES=37
-readonly TODAY_COLOR_LAST=33
+readonly TODAY_COLOR_LAST=37
 
 #### 包含 ####
 . "${rootdir}"/shell/lib/filedir.sh
@@ -75,17 +75,17 @@ if [[ -s "${ydaytask}" ]]; then
       fi
       
       if ! grep "^${qq} 3" "${ydaytask}" &> /dev/null; then
-        echoline "                                              第三批\r" "${YDAY_COLOR_NO}"
+        echoline "                                                    第三批\r" "${YDAY_COLOR_NO}"
         result=1
       fi
       
       if ! grep "^${qq} 2" "${ydaytask}" &> /dev/null; then
-        echoline "                           第二批\r" "${YDAY_COLOR_NO}"
+        echoline "                               第二批\r" "${YDAY_COLOR_NO}"
         result=1
       fi
       
       if ! grep "^${qq} 1" "${ydaytask}" &> /dev/null; then
-        echoline "        第一批\r" "${YDAY_COLOR_NO}"
+        echoline "          第一批\r" "${YDAY_COLOR_NO}"
         result=1
       fi
       
@@ -125,37 +125,37 @@ if [[ -s "${todaytask}" ]]; then
       if grep "^${qq} 3" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
         
         if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
-          echoline "                                            > 第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
+          echoline "                                                  > 第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
         else
-          echoline "                                              第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+          echoline "                                                    第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
         fi
         
       else
-        echoline "                                              第三批\r" "${TODAY_COLOR_NO}"
+        echoline "                                                    第三批\r" "${TODAY_COLOR_NO}"
       fi
       
       if grep "^${qq} 2" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
         
         if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
-          echoline "                         > 第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
+          echoline "                             > 第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
         else
-          echoline "                           第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+          echoline "                               第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
         fi
         
       else
-        echoline "                           第二批\r" "${TODAY_COLOR_NO}"
+        echoline "                               第二批\r" "${TODAY_COLOR_NO}"
       fi
       
       if grep "^${qq} 1" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
         
         if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
-          echoline "      > 第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
+          echoline "        > 第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
         else
-          echoline "        第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+          echoline "          第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
         fi
         
       else
-        echoline "        第一批\r" "${TODAY_COLOR_NO}"
+        echoline "          第一批\r" "${TODAY_COLOR_NO}"
       fi
       
       echo "${space}${qq}"
@@ -173,19 +173,19 @@ cat <<-'EOF'
 
 远程配置:
 
-   0    全部
+   0      全部
 
-   5    3-1
-   6    3-2
-   7    4-1
-   8    4-2
-   9    5-1
+   5       3-1
+   6       3-2
+   7       4-1
+   8       4-2
+   9       5-1
 
-  10    5-2
-  11    6-1
-  12    6-2
-  13    7-1
-  14    7-2
+  10       5-2
+  11       6-1
+  12       6-2
+  13       7-1
+  14       7-2
 
 
 EOF
