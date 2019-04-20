@@ -31,7 +31,6 @@ readonly taskdir="${rootdir}/temp/remote/task"
 
 todaytask="${taskdir}/$(date +'%Y-%m-%d').task"
 ydaytask="${taskdir}/$(date +'%Y-%m-%d' -d '-1day').task"
-
 readonly todaytask
 readonly ydaytask
 
