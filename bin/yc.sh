@@ -101,7 +101,7 @@ if [[ -s "${ydaytask}" ]]; then
   
 fi
 
-# 5-2
+# 菜单的第二部分
 cat <<-'EOF'
 
 
