@@ -21,12 +21,12 @@ readonly YDAY_COLOR_NO=37
 
 #### 函数 ####
 # 功  能: 同 echo, 但不换行
-# 使  用: color::echoline 输出内容 颜色值
+# 使  用: echoline 输出内容 颜色值
 # 参数 1: 输出内容    [default: ]
 # 参数 2: 颜色值    [default: ]
 # 返回值: 输出内容
 # 备  注: 
-color::echoline() {
+echoline() {
   local message="$1"
   local color="$2"
   
@@ -69,17 +69,17 @@ if [[ -s "${ydaytask}" ]]; then
       fi
       
       if ! grep "^${qq} 3" "${ydaytask}" &> /dev/null; then
-        color::echoline "                      3\r" "${YDAY_COLOR_NO}"
+        echoline "                      3\r" "${YDAY_COLOR_NO}"
         result=1
       fi
       
       if ! grep "^${qq} 2" "${ydaytask}" &> /dev/null; then
-        color::echoline "            2\r" "${YDAY_COLOR_NO}"
+        echoline "            2\r" "${YDAY_COLOR_NO}"
         result=1
       fi
       
       if ! grep "^${qq} 1" "${ydaytask}" &> /dev/null; then
-        color::echoline "      1\r" "${YDAY_COLOR_NO}"
+        echoline "      1\r" "${YDAY_COLOR_NO}"
         result=1
       fi
       
