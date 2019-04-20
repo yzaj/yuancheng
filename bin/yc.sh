@@ -20,7 +20,7 @@ readonly YDAY_COLOR_NO=37
 . "${rootdir}"/shell/lib/color.sh
 
 #### 函数 ####
-# 功  能: 同 echo, 但不换行
+# 功  能: 同 echo, 不换行, 不高亮
 # 使  用: echoline 输出内容 颜色值
 # 参数 1: 输出内容    [default: ]
 # 参数 2: 颜色值    [default: ]
