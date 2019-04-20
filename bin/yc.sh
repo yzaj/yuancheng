@@ -123,31 +123,37 @@ if [[ -s "${todaytask}" ]]; then
       fi
       
       if grep "^${qq} 3" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
+        
         if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
           echoline "                                            > 第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
         else
           echoline "                                              第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
         fi
+        
       else
         echoline "                                              第三批\r" "${TODAY_COLOR_NO}"
       fi
       
       if grep "^${qq} 2" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
+        
         if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
           echoline "                         > 第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
         else
           echoline "                           第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
         fi
+        
       else
         echoline "                           第二批\r" "${TODAY_COLOR_NO}"
       fi
       
       if grep "^${qq} 1" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
+        
         if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
           echoline "      > 第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
         else
           echoline "        第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
         fi
+        
       else
         echoline "        第一批\r" "${TODAY_COLOR_NO}"
       fi
