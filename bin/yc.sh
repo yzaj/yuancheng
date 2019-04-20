@@ -61,6 +61,8 @@ EOF
 
 if [[ -s "${ydaytask}" ]]; then
   
+  echo ''
+  
   for qq in ${QQS}; do
     if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
       
@@ -69,17 +71,17 @@ if [[ -s "${ydaytask}" ]]; then
       fi
       
       if ! grep "^${qq} 3" "${ydaytask}" &> /dev/null; then
-        echoline "                      3\r" "${YDAY_COLOR_NO}"
+        echoline "                            第三批\r" "${YDAY_COLOR_NO}"
         result=1
       fi
       
       if ! grep "^${qq} 2" "${ydaytask}" &> /dev/null; then
-        echoline "            2\r" "${YDAY_COLOR_NO}"
+        echoline "                  第二批\r" "${YDAY_COLOR_NO}"
         result=1
       fi
       
       if ! grep "^${qq} 1" "${ydaytask}" &> /dev/null; then
-        echoline "      1\r" "${YDAY_COLOR_NO}"
+        echoline "        第一批\r" "${YDAY_COLOR_NO}"
         result=1
       fi
       
