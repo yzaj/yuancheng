@@ -12,6 +12,7 @@ rootdir="${bindir%%/yuancheng*}"
 readonly rootdir
 
 #### 常量 ####
+readonly QQS='1-1 1-2 2-1 2-2 3-1 3-2 4-1 4-2 5-1 5-2 6-1 6-2 7-1 7-2 8-1 8-2 9-1 9-2 10-1 10-2'
 
 #### 包含 ####
 . "${rootdir}"/shell/lib/filedir.sh
@@ -46,7 +47,13 @@ EOF
 
 if [[ -s "${ydaytask}" ]]; then
   
-  :
+  for qq in ${QQS}; do
+    if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
+      
+      :
+      
+    fi
+  done
   
 fi
 
@@ -59,7 +66,13 @@ EOF
 
 if [[ -s "${todaytask}" ]]; then
   
-  :
+  for qq in ${QQS}; do
+    if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
+      
+      :
+      
+    fi
+  done
   
 fi
 
