@@ -20,6 +20,18 @@ readonly YDAY_COLOR_NO=37
 . "${rootdir}"/shell/lib/color.sh
 
 #### 函数 ####
+# 功  能: 同 echo, 但不换行
+# 使  用: color::echoline 输出内容 颜色值
+# 参数 1: 输出内容    [default: ]
+# 参数 2: 颜色值    [default: ]
+# 返回值: 输出内容
+# 备  注: 
+color::echoline() {
+  local message="$1"
+  local color="$2"
+  
+  echo -ne "\e[0m\e[40;${color}m${message}\e[0m"
+}
 
 #### 变量 ####
 qq_list='3-1,3-2,4-1,4-2,5-1,5-2,6-1,6-2,7-1,7-2'
