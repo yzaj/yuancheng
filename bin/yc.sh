@@ -124,7 +124,7 @@ if [[ -s "${todaytask}" ]]; then
       
       if grep "^${qq} 3" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
         if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
-          color::echoline "                                            > 第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
+          echoline "                                            > 第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
         else
           echoline "                                              第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
         fi
@@ -134,7 +134,7 @@ if [[ -s "${todaytask}" ]]; then
       
       if grep "^${qq} 2" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
         if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
-          color::echoline "                         > 第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
+          echoline "                         > 第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
         else
           echoline "                           第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
         fi
@@ -144,7 +144,7 @@ if [[ -s "${todaytask}" ]]; then
       
       if grep "^${qq} 1" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
         if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
-          color::echoline "      > 第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
+          echoline "      > 第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
         else
           echoline "        第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
         fi
