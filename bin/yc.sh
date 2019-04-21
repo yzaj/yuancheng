@@ -17,6 +17,8 @@ readonly YDAY_COLOR_NO=37
 readonly TODAY_COLOR_NO=31
 readonly TODAY_COLOR_YES=37
 readonly TODAY_COLOR_LAST=37
+readonly READMAX=10
+readonly E_OPERATION_FAILED=3
 
 #### 包含 ####
 . "${rootdir}"/shell/lib/filedir.sh
@@ -190,6 +192,30 @@ cat <<-'EOF'
 
 EOF
 
-############################
+# 输入
+nums="$(seq "${READMAX}")"
+readonly nums
 
+for num in ${nums}; do
+  color::read '请输入编号: ' 35 'projectnum'
+  echo ''
+  
+  if [[ "${projectnum}" =~ ^[0-9]{1,}$ ]]; then
+    break
+  fi
+  
+  if [[ "${num}" == "${READMAX}" ]]; then
+    color::echo '错误: 超出可输入次数, 程序已中止' 31
+    exit "${E_OPERATION_FAILED}"
+  fi
+done
 
+readonly projectnum
+
+# 执行
+color::countdown 5 35 '程序将在 ' 34 ' 秒后自动执行, 请停止操作' 34
+
+bash "${bindir}"/yuancheng.sh "${projectnum}"
+
+echo ''
+color::timer 34 '已完成! 耗时: ' 32
