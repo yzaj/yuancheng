@@ -27,7 +27,7 @@ readonly projectnum="$1"
 
 #### 主体 ####
 case "${projectnum}" in
-  0 | all)
+  0 | all | a)
     bash "${rootdir}"/remote/bin/remote.sh all 1,2,3
     ;;
   31 | 3-1)

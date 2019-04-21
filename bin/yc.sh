@@ -190,10 +190,10 @@ nums="$(seq "${READMAX}")"
 readonly nums
 
 for num in ${nums}; do
-  color::read '请输入编号: ' 35 'projectnum'
+  color::read '请输入编号 [例如: 31 或 3-1]: ' 35 'projectnum'
   echo ''
   
-  if [[ "${projectnum}" =~ ^[0-9]{1,}$ ]]; then
+  if [[ "${projectnum}" =~ ^[0-9][0-9-]{0,3}$ || "${projectnum}" =~ ^al{0,2}$ ]]; then
     break
   fi
   
