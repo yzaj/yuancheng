@@ -27,37 +27,37 @@ readonly projectnum="$1"
 
 #### 主体 ####
 case "${projectnum}" in
-  0)
+  0 | all)
     bash "${rootdir}"/remote/bin/remote.sh all 1,2,3
     ;;
-  31)
+  31 | 3-1)
     bash "${rootdir}"/remote/bin/remote.sh 3-1 1,2,3
     ;;
-  32)
+  32 | 3-2)
     bash "${rootdir}"/remote/bin/remote.sh 3-2 1,2,3
     ;;
-  41)
+  41 | 4-1)
     bash "${rootdir}"/remote/bin/remote.sh 4-1 1,2,3
     ;;
-  42)
+  42 | 4-2)
     bash "${rootdir}"/remote/bin/remote.sh 4-2 1,2,3
     ;;
-  51)
+  51 | 5-1)
     bash "${rootdir}"/remote/bin/remote.sh 5-1 1,2,3
     ;;
-  52)
+  52 | 5-2)
     bash "${rootdir}"/remote/bin/remote.sh 5-2 1,2,3
     ;;
-  61)
+  61 | 6-1)
     bash "${rootdir}"/remote/bin/remote.sh 6-1 1,2,3
     ;;
-  62)
+  62 | 6-2)
     bash "${rootdir}"/remote/bin/remote.sh 6-2 1,2,3
     ;;
-  71)
+  71 | 7-1)
     bash "${rootdir}"/remote/bin/remote.sh 7-1 1,2,3
     ;;
-  72)
+  72 | 7-2)
     bash "${rootdir}"/remote/bin/remote.sh 7-2 1,2,3
     ;;
   *)
