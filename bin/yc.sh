@@ -63,111 +63,105 @@ clear
 # 菜单的第一部分
 cat <<-'EOF'
 昨天未做:
+
 EOF
 
-if [[ -s "${ydaytask}" ]]; then
-  
-  echo ''
-  
-  for qq in ${QQS}; do
-    if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
-      
-      if [[ "${qq}" =~ ^[1-9]-[1-2]$ ]]; then
-        space=' '
-      fi
-      
-      if ! grep "^${qq} 3" "${ydaytask}" &> /dev/null; then
-        echoline "                                                    第三批\r" "${YDAY_COLOR_NO}"
-        result=1
-      fi
-      
-      if ! grep "^${qq} 2" "${ydaytask}" &> /dev/null; then
-        echoline "                               第二批\r" "${YDAY_COLOR_NO}"
-        result=1
-      fi
-      
-      if ! grep "^${qq} 1" "${ydaytask}" &> /dev/null; then
-        echoline "          第一批\r" "${YDAY_COLOR_NO}"
-        result=1
-      fi
-      
-      if [[ "${result}" == "1" ]]; then
-        echo "${space}${qq}"
-      fi
-      
-      space=''
-      result=0
-      
+touch "${ydaytask}"
+
+for qq in ${QQS}; do
+  if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
+    
+    if [[ "${qq}" =~ ^[1-9]-[1-2]$ ]]; then
+      space=' '
     fi
-  done
-  
-fi
+    
+    if ! grep "^${qq} 3" "${ydaytask}" &> /dev/null; then
+      echoline "                                                    第三批\r" "${YDAY_COLOR_NO}"
+      result=1
+    fi
+    
+    if ! grep "^${qq} 2" "${ydaytask}" &> /dev/null; then
+      echoline "                               第二批\r" "${YDAY_COLOR_NO}"
+      result=1
+    fi
+    
+    if ! grep "^${qq} 1" "${ydaytask}" &> /dev/null; then
+      echoline "          第一批\r" "${YDAY_COLOR_NO}"
+      result=1
+    fi
+    
+    if [[ "${result}" == "1" ]]; then
+      echo "${space}${qq}"
+    fi
+    
+    space=''
+    result=0
+    
+  fi
+done
 
 # 菜单的第二部分
 cat <<-'EOF'
 
 
 今天任务:
+
 EOF
 
-if [[ -s "${todaytask}" ]]; then
-  
-  echo ''
-  
-  lasttime="$(tail -n 1 "${todaytask}" | cut -d' ' -f 3)"
-  readonly lasttime
-  
-  for qq in ${QQS}; do
-    if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
-      
-      if [[ "${qq}" =~ ^[1-9]-[1-2]$ ]]; then
-        space=' '
-      fi
-      
-      if grep "^${qq} 3" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
-        
-        if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
-          echoline "                                                  > 第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
-        else
-          echoline "                                                    第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
-        fi
-        
-      else
-        echoline "                                                    第三批\r" "${TODAY_COLOR_NO}"
-      fi
-      
-      if grep "^${qq} 2" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
-        
-        if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
-          echoline "                             > 第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
-        else
-          echoline "                               第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
-        fi
-        
-      else
-        echoline "                               第二批\r" "${TODAY_COLOR_NO}"
-      fi
-      
-      if grep "^${qq} 1" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
-        
-        if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
-          echoline "        > 第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
-        else
-          echoline "          第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
-        fi
-        
-      else
-        echoline "          第一批\r" "${TODAY_COLOR_NO}"
-      fi
-      
-      echo "${space}${qq}"
-      
-      space=''
-      
+touch "${todaytask}"
+
+lasttime="$(tail -n 1 "${todaytask}" | cut -d' ' -f 3)"
+readonly lasttime
+
+for qq in ${QQS}; do
+  if echo "${qq_list}" | grep ",${qq}," &> /dev/null; then
+    
+    if [[ "${qq}" =~ ^[1-9]-[1-2]$ ]]; then
+      space=' '
     fi
-  done
-  
-fi
+    
+    if grep "^${qq} 3" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
+      
+      if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
+        echoline "                                                  > 第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
+      else
+        echoline "                                                    第三批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+      fi
+      
+    else
+      echoline "                                                    第三批\r" "${TODAY_COLOR_NO}"
+    fi
+    
+    if grep "^${qq} 2" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
+      
+      if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
+        echoline "                             > 第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
+      else
+        echoline "                               第二批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+      fi
+      
+    else
+      echoline "                               第二批\r" "${TODAY_COLOR_NO}"
+    fi
+    
+    if grep "^${qq} 1" "${todaytask}" | cut -d' ' -f 3 > "${yctmp}"; then
+      
+      if [[ "${lasttime}" == "$(cat "${yctmp}")" ]]; then
+        echoline "        > 第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_LAST}"
+      else
+        echoline "          第一批 $(cat "${yctmp}")\r" "${TODAY_COLOR_YES}"
+      fi
+      
+    else
+      echoline "          第一批\r" "${TODAY_COLOR_NO}"
+    fi
+    
+    echo "${space}${qq}"
+    
+    space=''
+    
+  fi
+done
 
 # 菜单的第三部分
 cat <<-'EOF'
