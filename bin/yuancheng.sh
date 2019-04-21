@@ -30,34 +30,34 @@ case "${projectnum}" in
   0)
     bash "${rootdir}"/remote/bin/remote.sh all 1,2,3
     ;;
-  5)
+  31)
     bash "${rootdir}"/remote/bin/remote.sh 3-1 1,2,3
     ;;
-  6)
+  32)
     bash "${rootdir}"/remote/bin/remote.sh 3-2 1,2,3
     ;;
-  7)
+  41)
     bash "${rootdir}"/remote/bin/remote.sh 4-1 1,2,3
     ;;
-  8)
+  42)
     bash "${rootdir}"/remote/bin/remote.sh 4-2 1,2,3
     ;;
-  9)
+  51)
     bash "${rootdir}"/remote/bin/remote.sh 5-1 1,2,3
     ;;
-  10)
+  52)
     bash "${rootdir}"/remote/bin/remote.sh 5-2 1,2,3
     ;;
-  11)
+  61)
     bash "${rootdir}"/remote/bin/remote.sh 6-1 1,2,3
     ;;
-  12)
+  62)
     bash "${rootdir}"/remote/bin/remote.sh 6-2 1,2,3
     ;;
-  13)
+  71)
     bash "${rootdir}"/remote/bin/remote.sh 7-1 1,2,3
     ;;
-  14)
+  72)
     bash "${rootdir}"/remote/bin/remote.sh 7-2 1,2,3
     ;;
   *)
