@@ -66,6 +66,8 @@ cat <<-'EOF'
 
 EOF
 
+mkdir -p "${taskdir}"
+
 touch "${ydaytask}"
 
 for qq in ${QQS}; do
